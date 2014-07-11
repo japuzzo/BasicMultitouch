@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 23.0.2">
+
+    <issue
+        id="InlinedApi"
+        severity="Warning"
+        message="Field requires API level 13 (current min is 8): android.R.style#TextAppearance_Holo_Medium"
+        category="Correctness"
+        priority="6"
+        summary="Finds inlined fields that may or may not work on older platforms"
+        explanation="This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that&apos;s fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and device whether it&apos;s safe and can be suppressed or whether the code needs tbe guarded.
+
+If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `AndroidManifest.xml` file.
+If your code is *deliberately* accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.
+"
+        errorLine1="        mLogView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Holo_Medium);"
+        errorLine2="                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="adt">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/java/com/example/android/common/logger/LogFragment.java"
+            line="79"
+            column="51"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        severity="Warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details."
+        category="Correctness"
+        priority="6"
+        summary="Checks that the manifest specifies a targetSdkVersion that is recent"
+        explanation="When your application runs on a version of Android that is more recent than your `targetSdkVersion` specifies that it has been tested with, various compatibility modes kick in. This ensures that your application continues to work, but it may look out of place. For example, if the `targetSdkVersion` is less than 14, your app may get an option button in the UI.
+
+To fix this issue, set the `targetSdkVersion` to the highest available value. Then test your app to make sure everything works correctly. You may want to consult the compatibility notes to see what changes apply to each version you are adding support for: http://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
+        url="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
+        urls="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
+        errorLine1="    &lt;uses-sdk"
+        errorLine2="    ^">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/AndroidManifest.xml"
+            line="23"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.android.support:support-v4 than 19.1.+ is available: 20.0.0"
+        category="Correctness"
+        priority="4"
+        summary="Looks for old or obsolete Gradle library dependencies"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    compile &quot;com.android.support:support-v4:19.1.+&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/build.gradle"
+            line="20"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="Old buildToolsVersion; recommended version is 19.1.0 or later"
+        category="Correctness"
+        priority="4"
+        summary="Looks for old or obsolete Gradle library dependencies"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    buildToolsVersion &quot;19.0.1&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/build.gradle"
+            line="37"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="MergeRootFrame"
+        severity="Warning"
+        message="This &lt;FrameLayout> can be replaced with a &lt;merge> tag"
+        category="Performance"
+        priority="4"
+        summary="Checks whether a root &lt;FrameLayout> can be replaced with a `&lt;merge>` tag"
+        explanation="If a `&lt;FrameLayout>` is the root of a layout and does not provide background or padding etc, it can often be replaced with a `&lt;merge>` tag which is slightly more efficient. Note that this depends on context, so make sure you understand how the `&lt;merge>` tag works before proceeding."
+        url="http://android-developers.blogspot.com/2009/03/android-layout-tricks-3-optimize-by.html"
+        urls="http://android-developers.blogspot.com/2009/03/android-layout-tricks-3-optimize-by.html"
+        errorLine1="&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/layout/layout_mainactivity.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource R.layout.activity_main appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Looks for unused resources"
+        explanation="Unused resources make applications larger and slow down builds.">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/layout/activity_main.xml"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource R.dimen.margin_tiny appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Looks for unused resources"
+        explanation="Unused resources make applications larger and slow down builds."
+        errorLine1="    &lt;dimen name=&quot;margin_tiny&quot;>4dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/values/template-dimens.xml"
+            line="21"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource R.dimen.margin_small appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Looks for unused resources"
+        explanation="Unused resources make applications larger and slow down builds."
+        errorLine1="    &lt;dimen name=&quot;margin_small&quot;>8dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/values/template-dimens.xml"
+            line="22"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource R.dimen.margin_large appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Looks for unused resources"
+        explanation="Unused resources make applications larger and slow down builds."
+        errorLine1="    &lt;dimen name=&quot;margin_large&quot;>32dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/values/template-dimens.xml"
+            line="24"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        severity="Warning"
+        message="This LinearLayout layout or its LinearLayout parent is useless"
+        category="Performance"
+        priority="2"
+        summary="Checks whether a parent layout can be removed."
+        explanation="A layout with children that has no siblings, is not a scrollview or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy."
+        errorLine1="    &lt;LinearLayout style=&quot;@style/Widget.SampleMessageTile&quot;"
+        errorLine2="    ^"
+        quickfix="adt">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/layout/activity_main.xml"
+            line="22"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="IconDensities"
+        severity="Warning"
+        message="Missing the following drawables in drawable-mdpi: tile.9.png (found in drawable-hdpi)"
+        category="Usability:Icons"
+        priority="4"
+        summary="Ensures that icons provide custom versions for all supported densities"
+        explanation="Icons will look best if a custom version is provided for each of the major screen density classes (low, medium, high, extra high). This lint check identifies icons which do not have complete coverage across the densities.
+
+Low density is not really used much anymore, so this check ignores the ldpi density. To force lint to include it, set the environment variable `ANDROID_LINT_INCLUDE_LDPI=true`. For more information on current density usage, see http://developer.android.com/resources/dashboard/screens.html"
+        url="http://developer.android.com/guide/practices/screens_support.html"
+        urls="http://developer.android.com/guide/practices/screens_support.html">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/drawable-mdpi"/>
+    </issue>
+
+    <issue
+        id="IconDensities"
+        severity="Warning"
+        message="Missing the following drawables in drawable-xhdpi: tile.9.png (found in drawable-hdpi)"
+        category="Usability:Icons"
+        priority="4"
+        summary="Ensures that icons provide custom versions for all supported densities"
+        explanation="Icons will look best if a custom version is provided for each of the major screen density classes (low, medium, high, extra high). This lint check identifies icons which do not have complete coverage across the densities.
+
+Low density is not really used much anymore, so this check ignores the ldpi density. To force lint to include it, set the environment variable `ANDROID_LINT_INCLUDE_LDPI=true`. For more information on current density usage, see http://developer.android.com/resources/dashboard/screens.html"
+        url="http://developer.android.com/guide/practices/screens_support.html"
+        urls="http://developer.android.com/guide/practices/screens_support.html">
+        <location
+            file="/home/japuzzo/Desktop/BasicMultitouch/BasicMultitouchSample/src/main/res/drawable-xhdpi"/>
+    </issue>
+
+</issues>

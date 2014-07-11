@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/home/japuzzo/Desktop/Android Working/BasicMultitouch/BasicMultitouchSample/build/intermediates/pre-dexed/debug/support-v4-19.1.0-604c579198c9c3095ec9998e3ac522e6d53fb097.jar"
+        jar="/home/japuzzo/android-studio/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="/home/japuzzo/Desktop/Android Working/BasicMultitouch/BasicMultitouchSample/build/intermediates/pre-dexed/debug/classes-550b2c4b29948ceae30a05e87f01e5a05f2311c0.jar"
+        jar="/home/japuzzo/Desktop/Android Working/BasicMultitouch/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/19.1.0/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="af4cc326e6cd92f88db12298767e521743aedd36"/>
+
+</pre-dex-items>
